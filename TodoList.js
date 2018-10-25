@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import TodoInput from './TodoItem';
+import TodoItem from './TodoItem';
 
 class TodoList extends Component{
     render(){
         //tasks内の各TodoをTodoItemコンポーネントを用いてエレメントにしています。
         //list変数にはTodoItemエレメントの配列が入っています。
         const list = this.props.tasks.map(todo => {
-            returen <TodoItem{...todo}key={todo.id} />;
+            return <TodoItem　{...todo} key={todo.id} />;
         });
         return(
             <div>

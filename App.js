@@ -1,21 +1,47 @@
 import React, { Component } from 'react';
 import TodoInput from './TodoInput';
-import TodoInput from './TodoList';
+import TodoList from './TodoList';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    //TODO:後々stateで管理します
-    const tasks =[
-      {title: 'Todo1つ目', id:0},
-      {title: 'Todo2つ目', id:1},
-    ];
+  constructor(props){
+    super(props);
+    this.state = {
+      tasks:[
+        {title: 'Todo1つ目', id:0 ,},
+        {title: 'Todo2つ目', id:1 ,},
+          ],
+      uniqueId: 1,
+    };
+    this.addTodo = this.addTodo.bind(this);
+  }
+
+addTodo(title){
+  const{
+    tasks,
+    uniqueId
+  } = this.state;
+
+  tasks.push({
+    title,
+    id: uniqueId,
+  });
+
+  this.setState({
+    tasks,
+    uniqueId: uniqueId + 1,
+  });
+}
+
+  render() {    
 
     return (
-      <div>
+      <div className = "App">
         <h1>TODO App</h1>
-        <TodoList tasks={tasks} />
+        <TodoInput />
+        <TodoList addTodo={this.addTodo} />
+        <TodoList tasks={this.state.tasks} />
       </div>
       );
   }
