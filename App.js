@@ -39,7 +39,7 @@ addTodo(title){
     return (
       <div className = "App">
         <h1>TODO App</h1>
-        <TodoInput />
+        <TodoInput addTodo={this.addTodo}/>
         <TodoList addTodo={this.addTodo} />
         <TodoList tasks={this.state.tasks} />
       </div>
