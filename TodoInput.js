@@ -12,7 +12,7 @@ constructor(props){
 
 handleChange(e){
     this.setState({
-        inputValue: e.target.Value,
+        inputValue: e.target.Value
     });
 }
 

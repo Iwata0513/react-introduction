@@ -5,45 +5,53 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      tasks:[
-        {title: 'Todo1つ目', id:0 ,},
-        {title: 'Todo2つ目', id:1 ,},
-          ],
+      tasks: [
+        { title: 'Todo1つ目', id: 0, },
+        { title: 'Todo2つ目', id: 1, },
+      ],
       uniqueId: 1,
     };
     this.addTodo = this.addTodo.bind(this);
+    this.resetTodo = this.resetTodo.bind(this);
   }
 
-addTodo(title){
-  const{
-    tasks,
-    uniqueId
-  } = this.state;
+  resetTodo() {
+    this.setState({
+      tasks: [],
+    });
+  }
 
-  tasks.push({
-    title,
-    id: uniqueId,
-  });
+  addTodo(title) {
+    const {
+      tasks,
+      uniqueId,
+    } = this.state;
 
-  this.setState({
-    tasks,
-    uniqueId: uniqueId + 1,
-  });
-}
+    tasks.push({
+      title,
+      id : uniqueId,
+    });
 
-  render() {    
+    this.setState({
+      tasks,
+      uniqueId: uniqueId + 1,
+    });
+  }
+
+
+  render() {
 
     return (
-      <div className = "App">
+      <div className="App">
         <h1>TODO App</h1>
-        <TodoInput addTodo={this.addTodo}/>
-        <TodoList addTodo={this.addTodo} />
+        <button onClick={this.resetTodo}>リセット</button>
+        <TodoInput addTodo={this.addTodo} />
         <TodoList tasks={this.state.tasks} />
       </div>
-      );
+    );
   }
 }
 
